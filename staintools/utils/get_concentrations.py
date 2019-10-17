@@ -17,4 +17,4 @@ def get_concentrations(I, stain_matrix, regularizer=0.01):
 
     lasso = Lasso(alpha=regularizer, positive=True)
 
-    return lasso.fit(OD, stain_matrix)
+    return lasso.fit(stain_matrix.T, OD.T)

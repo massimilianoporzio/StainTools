@@ -34,7 +34,8 @@ class VahadaneStainExtractor(ABCStainExtractor):
         # do the dictionary learning
 
         dl = DictionaryLearning(
-            n_components=2, alpha=regularizer, positive_code=True, positive_dict=True)
+            n_components=2, alpha=regularizer, n_jobs=4,
+            positive_code=True, positive_dict=True)
 
         dl.fit(OD)
 

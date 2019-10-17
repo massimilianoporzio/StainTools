@@ -20,9 +20,12 @@ class MacenkoStainExtractor(ABCStainExtractor):
         :param angular_percentile:
         :return:
         """
+
         assert is_uint8_image(I), "Image should be RGB uint8."
+
         # Convert to OD and ignore background
-        tissue_mask = LuminosityThresholdTissueLocator.get_tissue_mask(I, luminosity_threshold=luminosity_threshold).reshape((-1,))
+        tissue_mask = LuminosityThresholdTissueLocator.get_tissue_mask(
+            I, luminosity_threshold=luminosity_threshold).reshape((-1,))
         OD = convert_RGB_to_OD(I).reshape((-1, 3))
         OD = OD[tissue_mask]
 
@@ -33,8 +36,10 @@ class MacenkoStainExtractor(ABCStainExtractor):
         V = V[:, [2, 1]]
 
         # Make sure vectors are pointing the right way
-        if V[0, 0] < 0: V[:, 0] *= -1
-        if V[0, 1] < 0: V[:, 1] *= -1
+        if V[0, 0] < 0:
+            V[:, 0] *= -1
+        if V[0, 1] < 0:
+            V[:, 1] *= -1
 
         # Project on this basis.
         That = np.dot(OD, V)

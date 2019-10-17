@@ -9,7 +9,10 @@ autopep8 = "*"
 
 [packages]
 staintools = {path = "."}
+numpy = "*"
+opencv-python = "*"
 scikit-learn = "*"
+matplotlib = "*"
 
 [requires]
 python_version = "3.7"

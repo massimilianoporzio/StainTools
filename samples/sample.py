@@ -1,10 +1,11 @@
 import staintools
+
 import datetime
 
 # Set up
 METHOD = 'vahadane'
 STANDARDIZE_BRIGHTNESS = True
-RESULTS_DIR = './results ' + str(datetime.datetime.now()) + '/'
+RESULTS_DIR = './results/'
 
 # Read the images
 i1 = staintools.read_image("./data/i1.png")
