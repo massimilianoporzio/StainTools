@@ -3,8 +3,6 @@ import unittest
 from unittest.mock import Mock
 import numpy as np
 
-sys.modules['spams'] = Mock()
-
 from staintools.tissue_masks.luminosity_threshold_tissue_locator import LuminosityThresholdTissueLocator
 from staintools.utils.exceptions import TissueMaskException
 

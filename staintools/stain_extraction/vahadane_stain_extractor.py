@@ -1,4 +1,4 @@
-import spams
+from sklearn.decomposition import DictionaryLearning
 
 from staintools.stain_extraction.abc_stain_extractor import ABCStainExtractor
 from staintools.utils.miscellaneous_functions import normalize_matrix_rows
@@ -20,15 +20,25 @@ class VahadaneStainExtractor(ABCStainExtractor):
         :param regularizer:
         :return:
         """
+
         assert is_uint8_image(I), "Image should be RGB uint8."
+
         # convert to OD and ignore background
-        tissue_mask = LuminosityThresholdTissueLocator.get_tissue_mask(I, luminosity_threshold=luminosity_threshold).reshape((-1,))
+
+        tissue_mask = LuminosityThresholdTissueLocator.get_tissue_mask(
+            I, luminosity_threshold=luminosity_threshold).reshape((-1,))
+
         OD = convert_RGB_to_OD(I).reshape((-1, 3))
         OD = OD[tissue_mask]
 
         # do the dictionary learning
-        dictionary = spams.trainDL(X=OD.T, K=2, lambda1=regularizer, mode=2,
-                                   modeD=0, posAlpha=True, posD=True, verbose=False).T
+
+        dl = DictionaryLearning(
+            n_components=2, alpha=regularizer, positive_code=True, positive_dict=True)
+
+        dl.fit(OD)
+
+        dictionary = dl.components_
 
         # order H and E.
         # H on first row.

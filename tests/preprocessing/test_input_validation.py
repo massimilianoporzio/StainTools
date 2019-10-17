@@ -3,8 +3,6 @@ import unittest
 from unittest.mock import Mock
 import numpy as np
 
-sys.modules['spams'] = Mock()
-
 from staintools.preprocessing.input_validation import is_image, is_uint8_image
 
 

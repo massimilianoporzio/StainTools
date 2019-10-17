@@ -3,8 +3,6 @@ import unittest
 from unittest.mock import Mock
 import numpy as np
 
-sys.modules['spams'] = Mock()
-
 from staintools.utils.optical_density_conversion import convert_RGB_to_OD, convert_OD_to_RGB
 
 

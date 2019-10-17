@@ -3,8 +3,6 @@ import unittest
 from unittest.mock import Mock
 import numpy as np
 
-sys.modules['spams'] = Mock()
-
 from staintools.utils.miscellaneous_functions import get_sign, normalize_matrix_rows
 
 
