@@ -3,9 +3,9 @@ import torch
 
 def get_sign(x):
      
-     if torch.cuda.is_available():
+    if torch.cuda.is_available():
           return torch.sign(x)
-     else:
+    else:
           if x > 0:
                return +1
           elif x < 0:
