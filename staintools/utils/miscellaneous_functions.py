@@ -2,22 +2,16 @@ import numpy as np
 import torch
 
 def get_sign(x):
-     """
-    Returns the sign of x.
-
-    :param x: A scalar x.
-    :return: The sign of x.
-    """
-    device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
-    if torch.cuda.is_available():
-        return torch.sign(x)
-    else:
-         if x > 0:
-            return +1
-         elif x < 0:
-             return -1
-         elif x == 0:
-             return 0
+     device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+     if torch.cuda.is_available():
+          return torch.sign(x)
+     else:
+          if x > 0:
+               return +1
+          elif x < 0:
+               return -1
+          elif x == 0:
+               return 0
    
    
 
