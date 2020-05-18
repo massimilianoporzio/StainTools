@@ -23,4 +23,9 @@ def normalize_matrix_rows(A):
     :param A: An array.
     :return: Array with rows normalized.
     """
-    return A / np.linalg.norm(A, axis=1)[:, None]
+    if torch.cuda.is_available():
+          device = torch.device("cuda:0")
+          A = torch.from_numpy(A).float().to(device)
+          return A / A.norm(dim=1)[:, None]
+    else:
+          return A / np.linalg.norm(A, axis=1)[:, None]
